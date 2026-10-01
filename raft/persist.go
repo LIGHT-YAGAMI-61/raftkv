@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"time"
 
-	pb "raftkv/proto"
+	pb "github.com/LIGHT-YAGAMI-61/raftkv/proto"
 )
 
 type persistentState struct {

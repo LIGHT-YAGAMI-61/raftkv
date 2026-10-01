@@ -6,7 +6,7 @@ import (
 	"math/rand"
 	"time"
 
-	pb "raftkv/proto"
+	pb "github.com/LIGHT-YAGAMI-61/raftkv/proto"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"

@@ -2,7 +2,7 @@ package raft
 
 import (
 	"log"
-	pb "raftkv/proto"
+	pb "github.com/LIGHT-YAGAMI-61/raftkv/proto"
 )
 
 const (

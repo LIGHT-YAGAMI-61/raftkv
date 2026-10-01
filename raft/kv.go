@@ -5,7 +5,7 @@ import (
 	"errors"
 	"time"
 
-	pb "raftkv/proto"
+	pb "github.com/LIGHT-YAGAMI-61/raftkv/proto"
 )
 
 // SubmitCommand appends a Put/Delete to the log (only the leader may do

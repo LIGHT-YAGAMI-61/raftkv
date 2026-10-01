@@ -12,8 +12,8 @@ import (
 	"sync"
 	"time"
 
-	"raftkv/client"
-	pb "raftkv/proto"
+	"github.com/LIGHT-YAGAMI-61/raftkv/client"
+	pb "github.com/LIGHT-YAGAMI-61/raftkv/proto"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"

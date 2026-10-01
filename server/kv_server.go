@@ -3,8 +3,8 @@ package server
 import (
 	"context"
 
-	pb "raftkv/proto"
-	"raftkv/raft"
+	pb "github.com/LIGHT-YAGAMI-61/raftkv/proto"
+	"github.com/LIGHT-YAGAMI-61/raftkv/raft"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

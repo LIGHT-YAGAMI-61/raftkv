@@ -1,6 +1,6 @@
 syntax = "proto3";
 package kv;
-option go_package = "raftkv/proto";
+option go_package = "github.com/LIGHT-YAGAMI-61/raftkv/proto";
 
 service KV {
   rpc Get(GetRequest) returns (GetResponse);

@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"raftkv/client"
+	"github.com/LIGHT-YAGAMI-61/raftkv/client"
 )
 
 type results struct {

@@ -1,4 +1,4 @@
-module raftkv
+module github.com/LIGHT-YAGAMI-61/raftkv
 
 go 1.27.1
 

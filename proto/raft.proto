@@ -1,6 +1,6 @@
 syntax = "proto3";
 package raft;
-option go_package = "raftkv/proto";
+option go_package = "github.com/LIGHT-YAGAMI-61/raftkv/proto";
 
 service Raft {
   rpc RequestVote(RequestVoteArgs) returns (RequestVoteReply);

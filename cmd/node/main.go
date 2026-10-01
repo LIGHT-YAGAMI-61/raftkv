@@ -7,9 +7,9 @@ import (
 	"net"
 	"os"
 
-	pb "raftkv/proto"
-	"raftkv/raft"
-	"raftkv/server"
+	pb "github.com/LIGHT-YAGAMI-61/raftkv/proto"
+	"github.com/LIGHT-YAGAMI-61/raftkv/raft"
+	"github.com/LIGHT-YAGAMI-61/raftkv/server"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"

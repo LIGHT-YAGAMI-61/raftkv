@@ -1,6 +1,6 @@
 package raft
 
-import pb "raftkv/proto"
+import pb "github.com/LIGHT-YAGAMI-61/raftkv/proto"
 
 // runReplicator is the only goroutine that sends AppendEntries to one peer.
 func (n *Node) runReplicator(peerID string, client pb.RaftClient) {

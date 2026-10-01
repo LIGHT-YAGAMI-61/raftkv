@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	pb "raftkv/proto"
+	pb "github.com/LIGHT-YAGAMI-61/raftkv/proto"
 )
 
 func (n *Node) SetPartition(ctx context.Context, args *pb.PartitionArgs) (*pb.ChaosAck, error) {

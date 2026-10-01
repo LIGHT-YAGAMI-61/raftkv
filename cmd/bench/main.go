@@ -10,7 +10,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"raftkv/client"
+	"github.com/LIGHT-YAGAMI-61/raftkv/client"
 )
 
 func percentile(sorted []time.Duration, p float64) time.Duration {

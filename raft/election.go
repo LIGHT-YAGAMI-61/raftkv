@@ -6,7 +6,7 @@ import (
 	"math/rand"
 	"time"
 
-	pb "raftkv/proto"
+	pb "github.com/LIGHT-YAGAMI-61/raftkv/proto"
 )
 
 const maxEntriesPerRPC = 256

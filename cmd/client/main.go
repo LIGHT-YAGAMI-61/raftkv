@@ -6,7 +6,7 @@ import (
 	"log"
 	"strings"
 
-	"raftkv/client"
+	"github.com/LIGHT-YAGAMI-61/raftkv/client"
 )
 
 func main() {
