@@ -1,0 +1,11 @@
+
+Fault              Result Detail                          
+-----              ------ ------                          
+follower-pause     PASS   started: 05:11:05, violations: 0
+follower-partition PASS   started: 05:12:25, violations: 0
+leader-isolate     PASS   started: 05:13:52, violations: 0
+leader-kill        PASS   started: 05:15:22, violations: 0
+cluster-kill       PASS   started: 05:16:54, violations: 0
+
+
+

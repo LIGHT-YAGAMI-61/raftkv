@@ -1,0 +1,9 @@
+{
+  "nodes": [
+    { "id": "node1", "address": "localhost:5001" },
+    { "id": "node2", "address": "localhost:5002" },
+    { "id": "node3", "address": "localhost:5003" },
+    { "id": "node4", "address": "localhost:5004" },
+    { "id": "node5", "address": "localhost:5005" }
+  ]
+}

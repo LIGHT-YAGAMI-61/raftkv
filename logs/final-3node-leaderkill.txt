@@ -1,0 +1,10 @@
+=== Benchmark results ===
+Duration:        40s
+Concurrency:     50
+Total ops:       371894
+Failed ops:      0
+Throughput:      9297.4 ops/sec
+Latency p50:     3.90522ms
+Latency p95:     10.175385ms
+Latency p99:     13.431476ms
+Latency max:     1.861318067s

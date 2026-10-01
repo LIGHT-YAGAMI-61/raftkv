@@ -1,0 +1,39 @@
+x-node: &node
+  image: raftkv:latest
+  environment:
+    RAFTKV_SNAPSHOT_THRESHOLD: "10000"
+
+services:
+  node1:
+    <<: *node
+    command: ["-id", "node1", "-config", "/app/config5.docker.json"]
+    volumes: ["node1-data:/app/data", "./config5.docker.json:/app/config5.docker.json:ro"]
+  node2:
+    <<: *node
+    command: ["-id", "node2", "-config", "/app/config5.docker.json"]
+    volumes: ["node2-data:/app/data", "./config5.docker.json:/app/config5.docker.json:ro"]
+  node3:
+    <<: *node
+    command: ["-id", "node3", "-config", "/app/config5.docker.json"]
+    volumes: ["node3-data:/app/data", "./config5.docker.json:/app/config5.docker.json:ro"]
+  node4:
+    <<: *node
+    command: ["-id", "node4", "-config", "/app/config5.docker.json"]
+    volumes: ["node4-data:/app/data", "./config5.docker.json:/app/config5.docker.json:ro"]
+  node5:
+    <<: *node
+    command: ["-id", "node5", "-config", "/app/config5.docker.json"]
+    volumes: ["node5-data:/app/data", "./config5.docker.json:/app/config5.docker.json:ro"]
+
+  bench:
+    image: raftkv:latest
+    profiles: ["tools"]
+    entrypoint: ["/app/bench"]
+    depends_on: [node1, node2, node3, node4, node5]
+
+volumes:
+  node1-data:
+  node2-data:
+  node3-data:
+  node4-data:
+  node5-data:

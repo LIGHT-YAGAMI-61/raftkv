@@ -1,0 +1,43 @@
+x-node: &node
+  build: .
+  image: raftkv:latest
+  environment:
+    RAFTKV_SNAPSHOT_THRESHOLD: "10000"
+
+services:
+  node1:
+    <<: *node
+    command: ["-id", "node1", "-config", "/app/config.docker.json"]
+    volumes: ["node1-data:/app/data"]
+    ports: ["5001:5001"] # only for grpcurl from the host, see note below
+  node2:
+    <<: *node
+    command: ["-id", "node2", "-config", "/app/config.docker.json"]
+    volumes: ["node2-data:/app/data"]
+    ports: ["5002:5001"]
+  node3:
+    <<: *node
+    command: ["-id", "node3", "-config", "/app/config.docker.json"]
+    volumes: ["node3-data:/app/data"]
+    ports: ["5003:5001"]
+
+  bench:
+    image: raftkv:latest
+    profiles: ["tools"]
+    entrypoint: ["/app/bench"]
+    depends_on: [node1, node2, node3]
+
+  client:
+    image: raftkv:latest
+    profiles: ["tools"]
+    entrypoint: ["/app/client"]
+
+  checker:
+    image: raftkv:latest
+    profiles: ["tools"]
+    entrypoint: ["/app/checker"]
+
+volumes:
+  node1-data:
+  node2-data:
+  node3-data:

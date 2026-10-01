@@ -1,0 +1,76 @@
+syntax = "proto3";
+package raft;
+option go_package = "raftkv/proto";
+
+service Raft {
+  rpc RequestVote(RequestVoteArgs) returns (RequestVoteReply);
+  rpc AppendEntries(AppendEntriesArgs) returns (AppendEntriesReply);
+  rpc Submit(SubmitArgs) returns (SubmitReply);
+  rpc InstallSnapshot(InstallSnapshotArgs) returns (InstallSnapshotReply);
+  rpc PreVote(PreVoteArgs) returns (PreVoteReply);
+}
+
+message InstallSnapshotArgs {
+  uint64 term = 1;
+  string leader_id = 2;
+  uint64 last_included_index = 3;
+  uint64 last_included_term = 4;
+  bytes data = 5;
+}
+
+message InstallSnapshotReply {
+  uint64 term = 1;
+}
+
+message SubmitArgs {
+  bytes command = 1;
+}
+
+message SubmitReply {
+  bool success = 1;
+  string leader_hint = 2; // wired up properly in Phase 6
+}
+
+message RequestVoteArgs {
+  uint64 term = 1;
+  string candidate_id = 2;
+  uint64 last_log_index = 3;
+  uint64 last_log_term = 4;
+}
+
+message RequestVoteReply {
+  uint64 term = 1;
+  bool vote_granted = 2;
+}
+
+message LogEntry {
+  uint64 term = 1;
+  uint64 index = 2;
+  bytes command = 3; // opaque for now — becomes Get/Put/Delete payload in Phase 6
+}
+
+message AppendEntriesArgs {
+  uint64 term = 1;
+  string leader_id = 2;
+  uint64 prev_log_index = 3;
+  uint64 prev_log_term = 4;
+  repeated LogEntry entries = 5;
+  uint64 leader_commit = 6;
+}
+
+message AppendEntriesReply {
+  uint64 term = 1;
+  bool success = 2;
+}
+
+message PreVoteArgs {
+  uint64 term = 1; // the term the candidate WOULD use (currentTerm + 1); nobody adopts it
+  string candidate_id = 2;
+  uint64 last_log_index = 3;
+  uint64 last_log_term = 4;
+}
+
+message PreVoteReply {
+  uint64 term = 1;
+  bool vote_granted = 2;
+}

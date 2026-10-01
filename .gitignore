@@ -1,0 +1,7 @@
+data/
+*.jsonl
+*.log
+bin/
+*.exe
+.vscode/
+.idea/
