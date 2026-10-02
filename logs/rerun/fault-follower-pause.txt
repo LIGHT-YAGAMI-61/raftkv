@@ -1,0 +1,4 @@
+puts acked: 194234, puts failed: 0, gets failed: 16
+longest gap between successful writes: 1.782s
+started: 04:21:33, violations: 0
+RESULT: PASS
