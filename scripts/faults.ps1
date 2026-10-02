@@ -11,12 +11,12 @@ New-Item -ItemType Directory -Force $OutDir | Out-Null
 $Net = 'raftkv_default'
 $Nodes = 'node1','node2','node3'
 
-function Cid($svc) { docker compose ps -q $svc }
+function Cid($svc) { docker compose ps -a -q $svc }
 
 # Compose logs keep every past election, so the highest term is the current leader.
 function Get-Leader {
   $best = $null
-  docker compose logs --no-color 2>$null | ForEach-Object {
+    docker compose logs --no-color 2>$null | findstr /C:"becoming LEADER" | ForEach-Object {
     if ($_ -match '(node\d+): becoming LEADER for term (\d+)') {
       $t = [int]$Matches[2]
       if (-not $best -or $t -gt $best.Term) { $best = @{ Node = $Matches[1]; Term = $t } }
@@ -52,14 +52,19 @@ $summary = Join-Path $OutDir 'faults-summary.txt'
 Clear-Content $summary -ErrorAction SilentlyContinue
 
 foreach ($f in $Faults) {
-  Write-Host "== $f"
+    Write-Host "== $f"
+  docker compose down -v | Out-Null
+  docker compose up -d | Out-Null
+  Start-Sleep 12
   $out = Join-Path $OutDir "fault-$f.txt"
   $err = Join-Path $OutDir "fault-$f.err"
   $runArgs = @('compose','run','--rm','--no-deps','-T','--entrypoint','/app/checker','bench',
                '-nodes','node1:5001,node2:5001,node3:5001','-keys',"$Keys",'-duration',"${Duration}s")
+    $t0 = Get-Date
   $p = Start-Process docker -ArgumentList $runArgs -RedirectStandardOutput $out -RedirectStandardError $err -PassThru -NoNewWindow
   Start-Sleep 15
   Inject $f
+  Write-Host ("  injection finished at +{0:N0}s into the run" -f ((Get-Date) - $t0).TotalSeconds)
   $p | Wait-Process
   # Decide from the checker's own RESULT line, not the process exit code.
   $result = (Select-String -Path $out -Pattern 'RESULT:' | Select-Object -Last 1).Line
